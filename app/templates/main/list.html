@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>List of Restaurants</h1>
+</div>
+<div class="col-md-4">
+	{%  for restaurant in restaurants %}
+	<div style="margin-left:50px">
+		<h4>{{restaurant.name}}</h4>
+		<p>{{restaurant.speciality}}</p>
+		<button>Menu</button>
+	</div>
+	{% endfor %}
+
+</div>
+{% endblock %}
