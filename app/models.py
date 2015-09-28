@@ -12,23 +12,32 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(64), unique=True, index=True)
     dob = db.Column(db.Date, default=datetime.utcnow)
 
+    def __repr__(self):
+        return '<User %r>' % self.username
 
-def __repr__(self):
-    return '<User %r>' % self.username
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
 
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
 
-@property
-def password(self):
-    raise AttributeError('password is not a readable attribute')
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
+    # Flask-Login integration
+    def is_authenticated(self):
+        return False
 
-@password.setter
-def password(self, password):
-    self.password_hash = generate_password_hash(password)
+    def is_active(self):  # line 37
+        return True
 
+    def is_anonymous(self):
+        return False
 
-def verify_password(self, password):
-    return check_password_hash(self.password_hash, password)
+    def get_id(self):
+        return self.id
 
 
 @login_manager.user_loader

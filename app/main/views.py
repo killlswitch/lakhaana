@@ -15,5 +15,5 @@ def user(username):
 @main.route('/user/list')
 @login_required
 def list():
-	restaurants = Restaurant.query.all()
+    restaurants = Restaurant.query.order_by(Restaurant.name).all()
     render_template('main/list.html', restaurants=restaurants)
