@@ -10,7 +10,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
     email = db.Column(db.String(64), unique=True, index=True)
-    dob = db.Column(db.Date, default=datetime.utcnow)
+    dob = db.Column(db.Date(), default=datetime.utcnow)
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -30,7 +30,7 @@ class User(UserMixin, db.Model):
     def is_authenticated(self):
         return False
 
-    def is_active(self):  # line 37
+    def is_active(self):
         return True
 
     def is_anonymous(self):
@@ -40,17 +40,15 @@ class User(UserMixin, db.Model):
         return self.id
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
-
 class Restaurant(db.Model):
-    __tablename__ = 'Restaurant'
+    __tablename__ = 'restaurant'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True)
     speciality = db.Column(db.String(64))
     menu_table = db.Column(db.String(64), unique=True, index=True)
+
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
 
 
 class ChandniChonk(db.Model):
@@ -59,12 +57,18 @@ class ChandniChonk(db.Model):
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
 
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
+
 
 class Apnadhaba(db.Model):
     __tablename__ = 'apna_dhaba'
     id = db.Column(db.Integer, primary_key=True)
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
 
 
 class ShootersCafe(db.Model):
@@ -73,12 +77,18 @@ class ShootersCafe(db.Model):
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
 
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
+
 
 class AnandMess(db.Model):
     __tablename__ = 'anand_mess'
     id = db.Column(db.Integer, primary_key=True)
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
 
 
 class PunjabiDhaba(db.Model):
@@ -87,12 +97,18 @@ class PunjabiDhaba(db.Model):
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
 
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
+
 
 class TomsDiner(db.Model):
     __tablename__ = 'toms_diner'
     id = db.Column(db.Integer, primary_key=True)
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
 
 
 class TheValleyJunction(db.Model):
@@ -101,9 +117,20 @@ class TheValleyJunction(db.Model):
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
 
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
+
 
 class ChinaValley(db.Model):
     __tablename__ = 'china_valley'
     id = db.Column(db.Integer, primary_key=True)
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<restaurant %r>' % self.name
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
