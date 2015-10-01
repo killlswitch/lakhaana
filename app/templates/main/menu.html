@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}LaKhaana{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+	<h1>{{restaurant}}</h1>
+</div>
+<div class="col-md-4">
+	<h3>Menu</h3>
+	{% for m in menu%}
+	<div style="margin-left:30px;border:3px solid #616161;margin-top:10px;height:180px;">
+		<!--<h5 style="font-weight:bold;margin-left:30px;">{{m.reciepe}}</h5>
+		<p style="margin-left:30px;">Rs.{{m.cost|float}}</p>
+		<div style="width:100px;position: absolute;right: 20px; margin:2px;">{{wtf.quick_form(form)}}</div>-->
+		{{wtf.quickform(form)}}
+	</div>
+	{% endfor %}
+</div>
+<div class="col-md-4">
+	<h3>Cart</h3>
+	{% for c in cart %}
+	<div>
+		{%  for i in c%}
+		<p>{{i}}</p>
+		<br>
+		{% endfor %}
+		<a style="position: absolute;right: 20px; margin:10px;" href="#" class="btn btn-primary" role="button">Proceed to Checkout</a>
+	</div>
+	{% else %}
+	<h6>No items added</h6>
+	{% endfor %}
+
+	</div>
+</div>
+
+{% endblock %}

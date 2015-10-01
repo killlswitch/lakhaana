@@ -6,10 +6,11 @@
 </div>
 <div class="col-md-4">
 	{%  for restaurant in restaurants %}
-	<div style="margin-left:50px">
-		<h4>{{restaurant.name}}</h4>
-		<p>{{restaurant.speciality}}</p>
-		<button>Menu</button>
+	<div style="margin-left:30px;border:3px solid #616161;margin-top:10px;height:160px;">
+		<h4 style="font-weight:bold;margin-left:10px">{{restaurant.name}}</h4>
+		<p style="margin-left:20px;">Speciality:{{restaurant.speciality}}</p>
+		<p style="margin-left:20px;">Rating : 5 star</p>
+		<a style="position: absolute;right: 20px; margin:10px;" href="{{url_for('main.menu', id=restaurant.id)}}" class="btn btn-primary" role="button">Menu</a>
 	</div>
 	{% endfor %}
 

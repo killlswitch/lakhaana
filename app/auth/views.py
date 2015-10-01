@@ -38,4 +38,4 @@ def register():
 def logout():
     logout_user()
     flash('You have been logged out')
-    return render_template(url_for('auth/login.html'))
+    return redirect(url_for('auth.login'))

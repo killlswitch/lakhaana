@@ -16,3 +16,4 @@ flask-migrate==1.6.0
 flask-script==2.0.5
 flask-material=0.1.1
 flask-moment=0.5.1
+wtforms-components=0.9.8

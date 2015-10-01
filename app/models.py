@@ -45,90 +45,21 @@ class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, index=True)
     speciality = db.Column(db.String(64))
-    menu_table = db.Column(db.String(64), unique=True, index=True)
+    menu_table = db.relationship('Menu', backref='byRestaurant', lazy='dynamic')
 
     def __repr__(self):
         return '<restaurant %r>' % self.name
 
 
-class ChandniChonk(db.Model):
-    __tablename__ = 'chandni_chock'
+class Menu(db.Model):
+    __tablename__ = 'menu'
     id = db.Column(db.Integer, primary_key=True)
     reciepe = db.Column(db.String(64), index=True)
     cost = db.Column(db.Integer)
+    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurant.id'))
 
     def __repr__(self):
-        return '<restaurant %r>' % self.name
-
-
-class Apnadhaba(db.Model):
-    __tablename__ = 'apna_dhaba'
-    id = db.Column(db.Integer, primary_key=True)
-    reciepe = db.Column(db.String(64), index=True)
-    cost = db.Column(db.Integer)
-
-    def __repr__(self):
-        return '<restaurant %r>' % self.name
-
-
-class ShootersCafe(db.Model):
-    __tablename__ = 'shooters_cafe'
-    id = db.Column(db.Integer, primary_key=True)
-    reciepe = db.Column(db.String(64), index=True)
-    cost = db.Column(db.Integer)
-
-    def __repr__(self):
-        return '<restaurant %r>' % self.name
-
-
-class AnandMess(db.Model):
-    __tablename__ = 'anand_mess'
-    id = db.Column(db.Integer, primary_key=True)
-    reciepe = db.Column(db.String(64), index=True)
-    cost = db.Column(db.Integer)
-
-    def __repr__(self):
-        return '<restaurant %r>' % self.name
-
-
-class PunjabiDhaba(db.Model):
-    __tablename__ = 'punjabi_dhaba'
-    id = db.Column(db.Integer, primary_key=True)
-    reciepe = db.Column(db.String(64), index=True)
-    cost = db.Column(db.Integer)
-
-    def __repr__(self):
-        return '<restaurant %r>' % self.name
-
-
-class TomsDiner(db.Model):
-    __tablename__ = 'toms_diner'
-    id = db.Column(db.Integer, primary_key=True)
-    reciepe = db.Column(db.String(64), index=True)
-    cost = db.Column(db.Integer)
-
-    def __repr__(self):
-        return '<restaurant %r>' % self.name
-
-
-class TheValleyJunction(db.Model):
-    __tablename__ = 'the_valley_junction'
-    id = db.Column(db.Integer, primary_key=True)
-    reciepe = db.Column(db.String(64), index=True)
-    cost = db.Column(db.Integer)
-
-    def __repr__(self):
-        return '<restaurant %r>' % self.name
-
-
-class ChinaValley(db.Model):
-    __tablename__ = 'china_valley'
-    id = db.Column(db.Integer, primary_key=True)
-    reciepe = db.Column(db.String(64), index=True)
-    cost = db.Column(db.Integer)
-
-    def __repr__(self):
-        return '<restaurant %r>' % self.name
+        return '<Menu %r>' % (self.reciepe)
 
 
 @login_manager.user_loader
