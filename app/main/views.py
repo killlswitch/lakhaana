@@ -26,11 +26,12 @@ def menu(id):
     number = Number()
     restaurant = Restaurant.query.get_or_404(id)
     menu = restaurant.menu_table.all()
+    menulist = Menu.query.get_or_404(id)
     number.amount.data = 1
     if number.validate_on_submit():
         multiplier = number.amount.data
         total = multiplier
         cart = []
         cart.append([menu, multiplier, total])
-        return redirect(url_for('main.menu', restaurant=restaurant.name, menu=menu, form=number, cart=cart))
+        return redirect(url_for('main.menu', restaurant=restaurant.name, menu=menu, form=number))
     return render_template('main/menu.html', restaurant=restaurant.name, menu=menu, form=number, cart=[])

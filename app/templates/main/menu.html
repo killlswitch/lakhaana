@@ -10,10 +10,9 @@
 	<h3>Menu</h3>
 	{% for m in menu%}
 	<div style="margin-left:30px;border:3px solid #616161;margin-top:10px;height:180px;">
-		<!--<h5 style="font-weight:bold;margin-left:30px;">{{m.reciepe}}</h5>
+		<h5 style="font-weight:bold;margin-left:30px;">{{m.reciepe}}</h5>
 		<p style="margin-left:30px;">Rs.{{m.cost|float}}</p>
-		<div style="width:100px;position: absolute;right: 20px; margin:2px;">{{wtf.quick_form(form)}}</div>-->
-		{{wtf.quickform(form)}}
+		<div style="width:100px;position: absolute;right: 20px; margin:2px;">{{wtf.quick_form(form)}}</div>
 	</div>
 	{% endfor %}
 </div>
@@ -30,8 +29,14 @@
 	{% else %}
 	<h6>No items added</h6>
 	{% endfor %}
-
 	</div>
 </div>
+{% endblock %}
 
+{% block scripts%}
+<script type="text/javascript">
+	function pass_data (var cost) {
+		
+	}
+</script>
 {% endblock %}

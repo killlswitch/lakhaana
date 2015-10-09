@@ -46,7 +46,6 @@ class Restaurant(db.Model):
     name = db.Column(db.String(64), unique=True, index=True)
     speciality = db.Column(db.String(64))
     menu_table = db.relationship('Menu', backref='byRestaurant', lazy='dynamic')
-
     def __repr__(self):
         return '<restaurant %r>' % self.name
 
